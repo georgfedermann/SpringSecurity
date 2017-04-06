@@ -1,4 +1,4 @@
-package com.appress.pss.servlets;
+package org.poormanscastle.technologies.spring.security.web;
 
 import java.io.IOException;
 
