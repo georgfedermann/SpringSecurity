@@ -9,6 +9,10 @@
     <display-name>Archetype Created Web Application</display-name>
 
     <context-param>
+        <!--    org.springframework.web.context.ContextLoader uses this parameter
+                when loading the web application context. 
+                String configLocationParam = servletContext.getInitParameter("contextConfigLocation");  
+                The ContextLoader is integrated via the org.springframework.web.context.ContextLoaderListener, see below    -->
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext-security.xml</param-value>
     </context-param>
