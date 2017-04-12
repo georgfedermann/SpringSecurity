@@ -6,7 +6,7 @@
 
 <web-app>
     
-    <display-name>Archetype Created Web Application</display-name>
+    <display-name>Simple Spring Security sample web application</display-name>
 
     <context-param>
         <!--    org.springframework.web.context.ContextLoader uses this parameter
