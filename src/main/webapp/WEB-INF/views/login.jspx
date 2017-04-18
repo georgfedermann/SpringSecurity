@@ -17,21 +17,21 @@
     <form action="/j_spring_security_check" method="post">
         Username <input type="text" name="j_username"/><br/>
         Password <input type="text" name="j_password"/><br/>
+        Stay logged in <input type="checkbox" name="_spring_security_remember_me" value="1"/><br/>
         <input type="submit"/>
     </form>
-    <c:if test="{param.login_error ne null}">suck it!</c:if>
 
     <c:if test="${param.login_error ne null}">
         <div style="color: red; font-style: bolder;">There was an authentication error. Please enter your credentials again.</div>
     </c:if>
 
     <div style="font-style: italic; font-size: smaller;">
-        <em>Debug information:</em><br />
-        The value of URL parameter login_error is '<c:out value="${param.login_error}"/>'.<br />
-        Test 1 - empty param.login_error: <c:if test="${empty param.login_error}">empty</c:if><br />
-        Test 2 - not empty param.login_error: <c:if test="${not empty param.login_error}">not empty</c:if><br />
-        Test 3 - param.login_error eq null: <c:if test="${param.login_error eq null}">eq null</c:if><br />
-        Test 4 - param.login_error not eq null: <c:if test="${param.login_error ne null}">not eq null</c:if><br />
+        <em>Debug information:</em><br/>
+        The value of URL parameter login_error is '<c:out value="${param.login_error}"/>'.<br/>
+        Test 1 - empty param.login_error: <c:if test="${empty param.login_error}">empty</c:if><br/>
+        Test 2 - not empty param.login_error: <c:if test="${not empty param.login_error}">not empty</c:if><br/>
+        Test 3 - param.login_error eq null: <c:if test="${param.login_error eq null}">eq null</c:if><br/>
+        Test 4 - param.login_error not eq null: <c:if test="${param.login_error ne null}">not eq null</c:if><br/>
     </div>
     </body>
     </html>

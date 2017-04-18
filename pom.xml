@@ -10,7 +10,7 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.2.9.RELEASE</spring.version>
+        <spring.version>3.2.10.RELEASE</spring.version>
         <tomcat.version>7.0.63</tomcat.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
     </properties>
@@ -108,6 +108,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- jasig CAS dependencies -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-cas</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <!-- database / MySQL -->
         <dependency>
             <groupId>mysql</groupId>
@@ -119,10 +125,39 @@
         <finalName>SpringSecurity</finalName>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>keytool-maven-plugin</artifactId>
+                <configuration>
+                    <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
+                    <dname>cn=localhost</dname>
+                    <keypass>jetty8</keypass>
+                    <storepass>jetty8</storepass>
+                    <alias>localhost</alias>
+                    <keyalg>RSA</keyalg>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.1.1.v20120215</version>
                 <configuration>
+                    <!--connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8090</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                        <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
+                            <port>9443</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                            <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
+                            <password>jetty8</password>
+                            <keyPassword>jetty8</keyPassword>
+                        </connector>
+                    </connectors>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>8999</stopPort>
+                    <contextPath>/</contextPath-->
                     <systemProperties>
                         <systemProperty>
                             <name>jetty.port</name>
@@ -133,4 +168,17 @@
             </plugin>
         </plugins>
     </build>
+    <developers>
+        <developer>
+            <id>georg.federmann</id>
+            <name>Georg Federmann</name>
+            <email>georg.federmann@gmail.com</email>
+            <organization>workingtitle</organization>
+            <organizationUrl>http://www.workingtitle.com</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 </project>

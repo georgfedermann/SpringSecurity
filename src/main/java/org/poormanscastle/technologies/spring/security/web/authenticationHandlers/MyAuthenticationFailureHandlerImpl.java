@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 /**
@@ -28,6 +29,12 @@ public class MyAuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationF
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         if (isInfo) {
+            String principal = httpServletRequest.getParameter("j_username");
+            if (principal != null) {
+                logger.info(StringUtils.join("Login failed for principal ", principal));
+            } else {
+                logger.info(StringUtils.join("Login failed and principal was null: ", SecurityContextHolder.getContext().toString()));
+            }
             logger.info(StringUtils.join("Beware! Authentication just failed for given principal ",
                     ((UsernamePasswordAuthenticationToken) e.getAuthentication()).getPrincipal(),
                     ". Additional information: ", e.getExtraInformation(), "; because: ", e.getMessage()));
