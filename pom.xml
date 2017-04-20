@@ -128,10 +128,10 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>keytool-maven-plugin</artifactId>
                 <configuration>
-                    <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
+                    <keystore>${project.build.directory}/../jetty-ssl.keystore</keystore>
                     <dname>cn=localhost</dname>
-                    <keypass>jetty8</keypass>
-                    <storepass>jetty8</storepass>
+                    <keypass>changeit</keypass>
+                    <storepass>changeit</storepass>
                     <alias>localhost</alias>
                     <keyalg>RSA</keyalg>
                 </configuration>
@@ -141,7 +141,7 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.1.1.v20120215</version>
                 <configuration>
-                    <!--connectors>
+                    <connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                             <port>8090</port>
                             <maxIdleTime>60000</maxIdleTime>
@@ -149,21 +149,23 @@
                         <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
                             <port>9443</port>
                             <maxIdleTime>60000</maxIdleTime>
-                            <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
-                            <password>jetty8</password>
-                            <keyPassword>jetty8</keyPassword>
+                            <keystore>${project.build.directory}/../jetty-ssl.keystore</keystore>
+                            <password>changeit</password>
+                            <keyPassword>changeit</keyPassword>
+                            <truststore>${basedir}/jetty-ssl.truststore</truststore>
+                            <trustPassword>changeit</trustPassword>
                         </connector>
                     </connectors>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <stopKey>foo</stopKey>
                     <stopPort>8999</stopPort>
-                    <contextPath>/</contextPath-->
-                    <systemProperties>
+                    <contextPath>/</contextPath>
+                    <!--systemProperties>
                         <systemProperty>
                             <name>jetty.port</name>
                             <value>8090</value>
                         </systemProperty>
-                    </systemProperties>
+                    </systemProperties-->
                 </configuration>
             </plugin>
         </plugins>
